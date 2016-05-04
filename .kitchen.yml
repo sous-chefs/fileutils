@@ -1,0 +1,43 @@
+---
+driver:
+  name: vagrant
+
+driver_config:
+  http_proxy: http://webproxysea.nordstrom.net:8181
+  https_proxy: http://webproxysea.nordstrom.net:8181
+  no_proxy: nordstrom.net,y0319p274.nordstrom.net,y0319p973.nordstrom.net,x0319p164,10.16.139.174
+  require_chef_omnibus: 12.4.1
+
+provisioner:
+  name: chef_zero
+  gem_source: http://10.16.216.242
+
+platforms:
+  - name: base-rhel5
+    driver_config:
+      box: nordrhel5
+      box_url: http://uis.nordstrom.net/imgarchive/vagrant/rhel5_virtualbox.box
+  - name: base-rhel6
+    driver_config:
+      box: nordrhel6
+      box_url: http://uis.nordstrom.net/imgarchive/vagrant/rhel6_virtualbox.box
+  - name: base-rhel7
+    driver_config:
+      box: nordrhel7
+      box_url: http://uis.nordstrom.net/imgarchive/vagrant/rhel7_virtualbox.box
+  - name: base-sol10
+    driver:
+      box: nordsol10
+      box_url: http://uis.nordstrom.net/downloads/vagrant/virtualbox/solaris-10.11.virtualbox.box
+      require_chef_omnibus: latest
+  - name: base-sol11
+    driver:
+      box: nordsol11
+      box_url: http://uis.nordstrom.net/downloads/vagrant-solaris11.box
+      require_chef_omnibus: latest
+
+suites:
+  - name: default
+    run_list:
+      - recipe[COOKBOOK_NAME]
+    attributes:

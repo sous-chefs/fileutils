@@ -16,24 +16,24 @@ platforms:
   - name: base-rhel5
     driver_config:
       box: nordrhel5
-      box_url: http://uis.nordstrom.net/imgarchive/vagrant/rhel5_virtualbox.box
+      box_url: http://y0319p297/imgarchive/vagrant/rhel5_virtualbox.box
   - name: base-rhel6
     driver_config:
       box: nordrhel6
-      box_url: http://uis.nordstrom.net/imgarchive/vagrant/rhel6_virtualbox.box
+      box_url: http://y0319p297/imgarchive/vagrant/rhel6_virtualbox.box
   - name: base-rhel7
     driver_config:
       box: nordrhel7
-      box_url: http://uis.nordstrom.net/imgarchive/vagrant/rhel7_virtualbox.box
+      box_url: http://y0319p297/imgarchive/vagrant/rhel7_virtualbox.box
   - name: base-sol10
     driver:
       box: nordsol10
-      box_url: http://uis.nordstrom.net/downloads/vagrant/virtualbox/solaris-10.11.virtualbox.box
+      box_url: http://y0319p297/imgarchive/vagrant/sol10u11_virtualbox.box
       require_chef_omnibus: latest
   - name: base-sol11
     driver:
       box: nordsol11
-      box_url: http://uis.nordstrom.net/downloads/vagrant-solaris11.box
+      box_url: http://y0319p297/imgarchive/vagrant/sol11u3_virtualbox.box
       require_chef_omnibus: latest
 
 suites:

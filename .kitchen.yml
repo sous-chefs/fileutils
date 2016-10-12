@@ -28,12 +28,12 @@ platforms:
   - name: base-sol10
     driver:
       box: nordsol10
-      box_url: http://y0319p297/imgarchive/vagrant/sol10u11_virtualbox.box
+      box_url: http://y0319p297/imgarchive/vagrant/sol10_virtualbox.box
       require_chef_omnibus: latest
   - name: base-sol11
     driver:
       box: nordsol11
-      box_url: http://y0319p297/imgarchive/vagrant/sol11u3_virtualbox.box
+      box_url: http://y0319p297/imgarchive/vagrant/sol11_virtualbox.box
       require_chef_omnibus: latest
 
 suites:

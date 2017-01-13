@@ -27,7 +27,7 @@ fileutils '/u02/make/sub' do
   group 'g1'
   owner 'u1'
   directory_mode 'g+w'
-  file_mode 'o-w'
+  file_mode 'u-w'
 end
 
 # Set using a file filter
@@ -79,8 +79,8 @@ end
 fileutils '/u07/make/sub' do
   group 'g1'
   owner 'u1'
-  directory_mode 'g+w'
-  file_mode ['o-w', 'gu-r']
+  directory_mode ['g+w', 'u-r']
+  file_mode ['u-w', 'go-r']
   only_files true
 end
 

@@ -14,18 +14,24 @@ property :directory_mode, [String, Integer, Array], callbacks: {
   'should be numeric, ogu+rwx form or array of valid values' => lambda do |p|
     return true if p.is_a?(Integer) && p < 01000
     [p].flatten.compact.all? do |mode|
-      mode =~ /\A([ugo]*[\+-][rwx]+|0[0-7]{3,3})\z/
+      mode =~ /\A([ugo]*[\+-][rwx]+|0[0-7]{3,4})\z/
     end
   end
 }
 property :file_mode, [String, Fixnum, Array] # (absolute value or + or -)
 property :only_files, [TrueClass, FalseClass], default: false
 property :only_directories, [TrueClass, FalseClass], default: false
+property :force, [TrueClass, FalseClass], default: false
 property :group, String
 property :owner, String
 
 action_class do
+  def whyrun_supported?
+    true
+  end
+
   include DirHelper
+
 end
 
 action :create do
@@ -38,8 +44,8 @@ end
 
 action :delete do
   puts "Resource #{path} only #{only_files}"
-  changed = delete_files(path, pattern, recursive, follow_symlink,
-                         only_files, Chef::Config[:why_run]
+  changed = delete_files(path, pattern, follow_symlink,
+                         only_files, force, Chef::Config[:why_run]
                         )
   new_resource.updated_by_last_action(true) if changed
 end

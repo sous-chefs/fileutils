@@ -8,16 +8,24 @@
 
 # Utility methods to change directory and file attributes
 module DirHelper
-  $LOAD_PATH.unshift *Dir[File.expand_path('../../files/default/vendor/gems/**/lib', __FILE__)]
+  $LOAD_PATH.unshift(*Dir[File.expand_path('../../files/default/vendor/gems/**/lib', __FILE__)])
   require 'etc'
   require 'find'
   require 'walk'
-  R = 0444
-  W = 0222
-  X = 0111
-  O = 0700
-  G = 0070
-  U = 0007
+
+  # Permissions
+  R = 0444  # Read
+  W = 0222  # Write
+  X = 0111  # Search/execute
+  SU = 04000 # Assign user
+  SG = 02000 # Assign group
+  T = 01000  # Sticky bit
+
+  # Who
+  U = 07700  # Owning user
+  G = 07070  # Owning group
+  O = 07007  # Others
+  A = 07777  # Everyone
 
   def update_files(path, pattern, recursive, follow_symlink,
                    directory_mode, file_mode, group, owner,
@@ -41,17 +49,6 @@ module DirHelper
     @changed
   end
 
-  def delete_files(path, pattern, recursive, follow_symlink, only_files, why_run)
-    @path = path
-    @pattern = pattern
-    @recursive = recursive
-    @follow_symlink = follow_symlink
-    @only_files = only_files
-    @why_run = why_run
-    find_and_delete_file(path)
-    @changed
-  end
-
   def find_and_update_files(path)
     if ::File.directory?(path) && @recursive
       ::Find.find(path) do |node|
@@ -60,6 +57,18 @@ module DirHelper
     else
       update(path)
     end
+  end
+
+  def delete_files(path, pattern, follow_symlink, only_files, force, why_run)
+    @path = path
+    @pattern = pattern
+    @follow_symlink = follow_symlink
+    @only_files = only_files
+    @force = force
+    @why_run = why_run
+    @changed = false
+    find_and_delete_file(path)
+    @changed
   end
 
   def find_and_delete_file(node)
@@ -73,14 +82,17 @@ module DirHelper
   def rm_files(files, path)
     files.each do |file|
       f = ::File.join(path, file)
+      raise "Tried to delete root /" if f = '/'
       next if @pattern && File.basename(path) !~ @pattern
       Chef::Log.info("Path #{f} deleted")
       @changed = true
-      ::FileUtils.remove_entry_secure(f) if ::File.exist?(f)
+      return if @why_run
+      ::FileUtils.remove_entry_secure(f, force: @force) if ::File.exist?(f)
     end
   end
 
   def update(path)
+    raise "Tried to update root /" if f = '/'
     return if @pattern && ::File.basename(path) !~ @pattern
     fs = ::File.lstat(path)
     case
@@ -99,7 +111,7 @@ module DirHelper
   def file_update(path, mode)
     Chef::Log.info("Path #{path} updated mode #{mode} owner #{@uid} group #{@gid}")
     @changed = true
-    return if Chef::Config[:why_run]
+    return if @why_run
     f = ::File.new(path)
     f.chmod(mode)
     f.chown(@uid, @gid)
@@ -122,14 +134,14 @@ module DirHelper
                   when /-/
                     calc_mode & ~mode_mask(setting)
                   else
-                    (calc_mode & ~0777 | setting)
+                    setting
                   end
     end
     calc_mode
   end
 
   def mode_mask(setting)
-    access_mask(setting) & who_mask(setting)
+    who_mask(setting) & prm_mask(setting)
   end
 
   def new_uid
@@ -140,20 +152,23 @@ module DirHelper
     Etc.getgrnam(@group).gid
   end
 
-  def access_mask(setting)
-    access = 0
-    access |= O | G | U if setting =~ /^(\+|-)/
-    access |= O if setting =~ /o/
-    access |= G if setting =~ /g/
-    access |= U if setting =~ /u/
-    access
-  end
-
   def who_mask(setting)
     who = 0
-    who |= R if setting =~ /r/
-    who |= W if setting =~ /w/
-    who |= X if setting =~ /x/
+    who |= U | G | O if setting =~ /^(\+|-|a)/
+    who |= U if setting =~ /u/
+    who |= G if setting =~ /g/
+    who |= O if setting =~ /o/
     who
+  end
+
+  def prm_mask(setting)
+    access = 0
+    access |= R if setting =~ /r/
+    access |= W if setting =~ /w/
+    access |= X if setting =~ /x/
+    access |= T if setting =~ /t/
+    access |= SU if setting =~ /s.*u/
+    access |= SG if setting =~ /s.*g/
+    access
   end
 end

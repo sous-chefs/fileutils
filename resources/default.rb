@@ -32,7 +32,6 @@ action_class do
 
   include DirChangeHelper
   include DirDeleteHelper
-
 end
 
 action :create do

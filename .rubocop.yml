@@ -16,11 +16,11 @@ Lint/UselessAssignment:
 
 # Offense count: 2
 Metrics/AbcSize:
-  Max: 22
+  Max: 30
 
 # Offense count: 3
 Metrics/CyclomaticComplexity:
-  Max: 11
+  Max: 20
 
 # Offense count: 5
 # Configuration parameters: CountComments.
@@ -39,7 +39,7 @@ Metrics/ParameterLists:
 
 # Offense count: 3
 Metrics/PerceivedComplexity:
-  Max: 11
+  Max: 15
 
 # Offense count: 1
 Style/Documentation:

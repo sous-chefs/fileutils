@@ -58,7 +58,7 @@ module DirChangeHelper
   end
 
   def update(path)
-    raise "Tried to update root /" if path == '/'
+    raise 'Tried to update root /' if path == '/'
     return if @pattern && ::File.basename(path) !~ @pattern
     fs = ::File.lstat(path)
     case

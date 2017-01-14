@@ -34,11 +34,11 @@ module DirDeleteHelper
   def rm_files(files, path)
     files.each do |file|
       f = ::File.join(path, file)
-      raise "Tried to delete root /" if f == '/'
+      raise 'Tried to delete root /' if f == '/'
       next if @pattern && File.basename(path) !~ @pattern
       Chef::Log.info("Path #{f} deleted")
       @changed = true
-      return if @why_run
+      next if @why_run
       ::FileUtils.remove_entry_secure(f, force: @force) if ::File.exist?(f)
     end
   end

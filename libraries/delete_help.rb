@@ -9,8 +9,6 @@
 # Utility methods to change directory and file attributes
 module DirDeleteHelper
   $LOAD_PATH.unshift(*Dir[File.expand_path('../../files/default/vendor/gems/**/lib', __FILE__)])
-  require 'etc'
-  require 'find'
   require 'walk'
 
   def delete_files(path, pattern, follow_symlink, only_files, force, why_run)
@@ -36,7 +34,7 @@ module DirDeleteHelper
   def rm_files(files, path)
     files.each do |file|
       f = ::File.join(path, file)
-      raise "Tried to delete root /" if f = '/'
+      raise "Tried to delete root /" if f == '/'
       next if @pattern && File.basename(path) !~ @pattern
       Chef::Log.info("Path #{f} deleted")
       @changed = true
@@ -44,3 +42,4 @@ module DirDeleteHelper
       ::FileUtils.remove_entry_secure(f, force: @force) if ::File.exist?(f)
     end
   end
+end

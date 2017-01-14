@@ -1,6 +1,7 @@
 require 'rspec_helper.rb'
 
-include DirHelper
+include DirChangeHelper
+include DirDeleteHelper
 context 'Directory utility' do
   describe 'method prm_mask' do
     it 'should parse read, write, execute mode settings' do

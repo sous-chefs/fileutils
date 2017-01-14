@@ -126,4 +126,5 @@ file '/ud2/make/sub/directories/leaf3'
 fileutils '/ud2/make/sub' do
   action :delete
   only_files true
+  force true
 end

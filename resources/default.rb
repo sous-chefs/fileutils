@@ -30,7 +30,8 @@ action_class do
     true
   end
 
-  include DirHelper
+  include DirChangeHelper
+  include DirDeleteHelper
 
 end
 

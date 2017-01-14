@@ -40,6 +40,31 @@ Action | Parameter | Use
         | follow_symlink | Boolean. Continue on past symlinks.  Serious footgun capacity!
         | force | Boolean. Use the for option with FileUtils
 
+Mode bit symbolic settings.
+--------------------------
+ 
+You can use symbolic settings. Pick who and add or subtract access permissions. The code tries to mimic the chmod command.
+
+*  who - 
+*  u Owning user
+*  g Owning group
+*  o Others
+*  a Everyone
+
+* Permissions
+*  r Read
+*  w Write
+*  x Search/execute
+*  s Assign user
+*  t Sticky bit
+
+Examples.
+---------
+
+*  '+r'  Adds read permissions to all files
+*  'g+r' Adds read permissions for the group to all files
+*  'o-w' Removes write permissions for other from all files
+
 Usage
 =====
 A good example of why you would use the fileutils resource would  be setting attributes on files and directories after dir and file have created things. Notice that fileutils and dir treat recursive as moving in opposite directions.
@@ -50,13 +75,18 @@ dir '/export/home/my/stuff/deep' do
   recursive true  # creates parents
 end
 # Set the owner on multiple directories
-fileutils '/export/home/my' do
-  recursive true # set the children
+fileutils '/export/home/my' do # Set the child nodes
   owner 'my'
 end
 # Empty a directory
 fileutils '/export/home/my' do
   action :delete
+end
+
+# Set mode attributes
+fileutils '/export/home/my' do # Set the child nodes
+  file_mode ['o+r', 'g+w'] 
+  directory_mode ['o+rx', 'g+wrx'] 
 end
 ````
 

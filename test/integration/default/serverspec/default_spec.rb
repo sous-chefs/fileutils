@@ -1,9 +1,141 @@
 require 'spec_helper'
 
-describe 'zero_cookbook::default' do
-  # Serverspec examples can be found at
-  # http://serverspec.org/resource_types.html
-  it 'does something' do
-    skip 'Replace this with meaningful tests'
+describe 'fileutils should' do
+  describe 'hardset mode'
+  describe file('/u01/make/sub') do
+    it 'should set first directory mode' do
+      expect(subject).to be_mode(555)
+    end
+    it 'should set first directory owner' do
+      expect(subject).to be_owned_by('u1')
+    end
+    it 'should set first directory group' do
+      expect(subject).to be_grouped_into('g1')
+    end
+  end
+  describe file('/u01/make/sub/directories/last') do
+    it 'should set last directory mode' do
+      expect(subject).to be_mode(555)
+    end
+    it 'should set last directory owner' do
+      expect(subject).to be_owned_by('u1')
+    end
+    it 'should set last directory group' do
+      expect(subject).to be_grouped_into('g1')
+    end
+  end
+  describe file('/u01/make/sub/directories/last/leaf') do
+    it 'should set last file mode' do
+      expect(subject).to be_mode(640)
+    end
+    it 'should set last file owner' do
+      expect(subject).to be_owned_by('u1')
+    end
+    it 'should set last file group' do
+      expect(subject).to be_grouped_into('g1')
+    end
+  end
+end
+
+describe 'Add or subtract mode settings' do
+  describe file('/u02/make/sub') do
+    it 'should add to directory mode' do
+      expect(subject).to be_mode(775)
+    end
+  end
+  describe file('/u02/make/sub/directories/last/leaf') do
+    it 'should remove from file mode' do
+      expect(subject).to be_mode(555)
+    end
+  end
+end
+
+describe 'Should follow symlinks when true' do
+  describe file('/u04') do
+    it 'should add to symlink directory mode' do
+      expect(subject).to be_mode(775)
+    end
+    it 'should set owner' do
+      expect(subject).to be_owned_by('u1')
+    end
+    it 'should set group' do
+      expect(subject).to be_grouped_into('g1')
+    end
+  end
+end
+
+describe 'Should not follow symlinks when false' do
+  describe file('/u06') do
+    it 'should not add to symlink directory mode' do
+      expect(subject).to be_mode(755)
+    end
+    it 'should not set owner' do
+      expect(subject).to be_owned_by('root')
+    end
+    it 'should not set group' do
+      expect(subject).to be_grouped_into('root')
+    end
+  end
+end
+
+describe 'Should change only files' do
+  describe file('/u07/make/sub/directories/last') do
+    it 'should not update directory' do
+      expect(subject).to be_mode(755)
+    end
+  end
+  describe file('/u07/make/sub/directories/last/leaf') do
+    it 'should update file using an array of settings' do
+      expect(subject).to be_mode(511)
+    end
+  end
+end
+
+describe 'Should change only directories' do
+  describe file('/u08/make/sub') do
+    it 'should update directory' do
+      expect(subject).to be_mode(270)
+    end
+  end
+  describe file('/u08/make/sub/directories/last') do
+    it 'should update directory' do
+      expect(subject).to be_mode(270)
+    end
+  end
+  describe file('/u08/make/sub/directories/last/leaf') do
+    it 'should not update file' do
+      expect(subject).to be_mode(755)
+    end
+  end
+end
+
+describe 'Should delete directories' do
+  describe file('/ud1/make/sub') do
+    it 'should delete directory' do
+      expect(subject).not_to exist
+    end
+  end
+end
+
+describe 'Should delete only files' do
+  describe file('/ud2/make/sub/directories/last') do
+    it 'should not delete directories' do
+      expect(subject).to exist
+    end
+  end
+  describe file('/ud2/make/sub/directories/last/leaf') do
+    it 'should delete files' do
+      expect(subject).not_to exist
+    end
+  end
+  describe file('/ud2/make/sub/directories/last/leaf2') do
+    it 'should delete files' do
+      expect(subject).not_to exist
+    end
+  end
+  describe file('/ud2/make/sub/directories/leaf3') do
+    it 'should delete files' do
+      expect(subject).not_to exist
+    end
   end
 end

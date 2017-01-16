@@ -1,8 +1,8 @@
 
-# CHANGELOG for COOKBOOK_NAME
+# CHANGELOG for fileutils
 
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
-## 0.0.0
-* 
+## 1.0.0
+* Initial version

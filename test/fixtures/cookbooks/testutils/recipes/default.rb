@@ -99,8 +99,38 @@ fileutils '/u08/make/sub' do
   only_directories true
 end
 
-# delete a directory tree
+# Set group only
+directory '/u09/make/sub/directories/last' do
+  recursive true
+end
+fileutils '/u09/make/sub' do
+  group 'g1'
+end
 
+# Set owner only
+directory '/u10/make/sub/directories/last' do
+  recursive true
+end
+fileutils '/u10/make/sub' do
+  owner 'u1'
+end
+
+# Change nothing, should not blow up
+directory '/u11/make/sub/directories/last' do
+  recursive true
+end
+fileutils '/u11/make/sub' do
+end
+
+# Change just the mode
+directory '/u12/make/sub/directories/last' do
+  recursive true
+end
+fileutils '/u12/make/sub' do
+  directory_mode 0771
+end
+
+# delete a directory tree
 directory '/ud1/make/sub/directories/last' do
   recursive true
 end
@@ -115,7 +145,6 @@ fileutils '/ud1/make/sub' do
 end
 
 # delete only files
-
 directory '/ud2/make/sub/directories/last' do
   recursive true
 end

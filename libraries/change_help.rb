@@ -40,8 +40,8 @@ module DirChangeHelper
     @why_run = why_run
     @only_files = only_files
     @only_directories = only_directories
-    @uid = new_uid
-    @gid = new_gid
+    @uid = owner ? new_uid : -1
+    @gid = group ? new_gid : -1
     @changed = false
     find_and_update_files(@path)
     @changed
@@ -99,6 +99,8 @@ module DirChangeHelper
                     calc_mode | mode_mask(setting)
                   when /-/
                     calc_mode & ~mode_mask(setting)
+                  when nil
+                    calc_mode
                   else
                     setting
                   end

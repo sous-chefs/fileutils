@@ -136,7 +136,6 @@ describe 'Should be able to set things separately' do
       expect(subject).to be_mode(777)
     end
   end
-
 end
 
 describe 'Should delete directories' do

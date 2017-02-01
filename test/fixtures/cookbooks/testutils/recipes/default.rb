@@ -84,7 +84,6 @@ fileutils '/u07/make/sub' do
   only_files true
 end
 
-
 # Set mode only on directories
 directory '/u08/make/sub/directories/last' do
   recursive true

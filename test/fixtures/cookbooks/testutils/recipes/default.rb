@@ -127,7 +127,7 @@ directory '/u12/make/sub/directories/last' do
   recursive true
 end
 fileutils '/u12/make/sub' do
-  directory_mode 0777
+  directory_mode 0771
 end
 
 # delete a directory tree

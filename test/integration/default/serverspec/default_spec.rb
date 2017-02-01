@@ -133,7 +133,7 @@ describe 'Should be able to set things separately' do
 
   describe file('/u12/make/sub/directories/last') do
     it 'should change mode only' do
-      expect(subject).to be_mode(777)
+      expect(subject).to be_mode(771)
     end
   end
 end

@@ -109,6 +109,36 @@ describe 'Should change only directories' do
   end
 end
 
+describe 'Should be able to set things separately' do
+  describe file('/u09/make/sub/directories/last') do
+    it 'should set group only' do
+      expect(subject).to be_owned_by('root')
+      expect(subject).to be_grouped_into('g1')
+    end
+  end
+
+  describe file('/u10/make/sub/directories/last') do
+    it 'should set user only' do
+      expect(subject).to be_owned_by('u1')
+      expect(subject).to be_grouped_into('root')
+    end
+  end
+
+  describe file('/u11/make/sub/directories/last') do
+    it 'should change nothing' do
+      expect(subject).to be_owned_by('root')
+      expect(subject).to be_grouped_into('root')
+    end
+  end
+
+  describe file('/u12/make/sub/directories/last') do
+    it 'should change mode only' do
+      expect(subject).to be_mode(777)
+    end
+  end
+
+end
+
 describe 'Should delete directories' do
   describe file('/ud1/make/sub') do
     it 'should delete directory' do

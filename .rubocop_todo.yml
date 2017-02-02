@@ -12,11 +12,6 @@ Lint/UnifiedInteger:
   Exclude:
     - 'resources/default.rb'
 
-# Offense count: 2
-Lint/UselessAssignment:
-  Exclude:
-    - 'files/default/vendor/gems/walk-0.1.0/lib/walk.rb'
-
 # Offense count: 3
 Metrics/AbcSize:
   Max: 24
@@ -54,7 +49,6 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'files/default/vendor/gems/walk-0.1.0/lib/walk.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -100,17 +94,9 @@ Style/NumericLiteralPrefix:
 Style/NumericPredicate:
   Exclude:
     - 'spec/**/*'
-    - 'files/default/vendor/gems/walk-0.1.0/spec/spec_helper.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/SpaceAfterNot:
   Exclude:
     - 'libraries/change_help.rb'
-
-# Offense count: 2
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: snake_case, normalcase, non_integer
-Style/VariableNumber:
-  Exclude:
-    - 'files/default/vendor/gems/walk-0.1.0/spec/spec_helper.rb'

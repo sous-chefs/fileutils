@@ -1,0 +1,15 @@
+# This is here just to make it work with chefci
+source 'https://rubygems.org'
+
+gem 'aws-sdk'
+gem 'foodcritic'
+gem 'rubocop'
+gem 'chefspec'
+gem 'chef-vault-testfixtures'
+gem 'rspec'
+gem 'inspec'
+gem 'berkshelf', '~> 4.0'
+gem 'kitchen-inspec'
+gem 'kitchen-sync'
+gem 'kitchen-vagrant'
+gem 'kitchen-ec2'

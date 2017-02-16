@@ -11,8 +11,8 @@ end
 fileutils '/u01/make/sub' do
   group 'g1'
   owner 'u1'
-  directory_mode 0555
-  file_mode 0640
+  directory_mode 0o555
+  file_mode 0o640
 end
 
 # Set mode bits using +/- mode settings
@@ -21,7 +21,7 @@ directory '/u02/make/sub/directories/last' do
   recursive true
 end
 file '/u02/make/sub/directories/last/leaf' do
-  mode 0755
+  mode 0o755
 end
 fileutils '/u02/make/sub' do
   group 'g1'
@@ -74,7 +74,7 @@ directory '/u07/make/sub/directories/last' do
   recursive true
 end
 file '/u07/make/sub/directories/last/leaf' do
-  mode 0755
+  mode 0o755
 end
 fileutils '/u07/make/sub' do
   group 'g1'
@@ -89,7 +89,7 @@ directory '/u08/make/sub/directories/last' do
   recursive true
 end
 file '/u08/make/sub/directories/last/leaf' do
-  mode 0755
+  mode 0o755
 end
 fileutils '/u08/make/sub' do
   group 'g1'
@@ -127,29 +127,29 @@ directory '/u12/make/sub/directories/last' do
   recursive true
 end
 fileutils '/u12/make/sub' do
-  directory_mode 0771
+  directory_mode 0o771
 end
 
 # Non recursive examples
 directory '/u13/make/sub/directories/last' do
   recursive true
-  mode 0755
+  mode 0o755
 end
 file '/u13/make/file' do
-  mode 0644
+  mode 0o644
 end
 file '/u13/make/sub/file' do
-  mode 0644
+  mode 0o644
 end
 fileutils '/u13/make/sub' do
   recursive false
-  directory_mode 0771
+  directory_mode 0o771
 end
 fileutils '/u13/make' do
   recursive false
   only_files true
-  directory_mode 0770
-  file_mode 0700
+  directory_mode 0o770
+  file_mode 0o700
 end
 
 # delete a directory tree

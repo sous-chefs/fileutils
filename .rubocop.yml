@@ -1,4 +1,4 @@
-inherit_from: .rubocop_todo.yml
+# inherit_from: .rubocop_todo.yml
 
 AllCops:
   Exclude:
@@ -7,3 +7,24 @@ AllCops:
 
 Metrics/LineLength:
   Max: 150
+
+Metrics/AbcSize:
+  Max: 24
+
+Metrics/BlockLength:
+  Max: 60
+
+Metrics/CyclomaticComplexity:
+  Max: 20
+
+Metrics/MethodLength:
+  Max: 16
+
+Metrics/ModuleLength:
+  Max: 140
+
+Metrics/ParameterLists:
+  Max: 11
+
+Metrics/PerceivedComplexity:
+  Max: 20

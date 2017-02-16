@@ -130,7 +130,6 @@ fileutils '/u12/make/sub' do
   directory_mode 0771
 end
 
-
 # Non recursive examples
 directory '/u13/make/sub/directories/last' do
   recursive true

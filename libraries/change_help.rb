@@ -52,10 +52,10 @@ module DirChangeHelper
     # traverse top down starting at path
     when ::File.directory?(path) && @recursive
       ::Find.find(path) { |node| update(node) }
-    # Update files and directories in the top path directory. 
+    # Update files and directories in the top path directory.
     when ::File.directory?(path)
       ::Find.find(path) do |node|
-        update(node) 
+        update(node)
         ::Find.prune if path != node && ::File.directory?(node)
       end
     # Process a single file

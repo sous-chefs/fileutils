@@ -7,6 +7,9 @@ cookbook.
 ## 1.1.0
 * Clean up what recursive means
 
+## 1.0.2
+* Support chefci (now being sent to internal supermarket via chefci)
+
 ## 1.0.1
 * Fix boundary condition bugs
 

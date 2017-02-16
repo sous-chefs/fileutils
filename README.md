@@ -103,5 +103,5 @@ end
 Acknowlegments
 =============
 
-Seth Vargo - Vender gem technique https://sethvargo.com/using-gems-with-chef/
-Samuel Gay - Walk gem https://github.com/samonzeweb/walk
+*  Seth Vargo - Vender gem technique https://sethvargo.com/using-gems-with-chef/
+*  Samuel Gay - Walk gem https://github.com/samonzeweb/walk

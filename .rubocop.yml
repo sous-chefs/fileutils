@@ -12,7 +12,7 @@ Metrics/AbcSize:
   Max: 24
 
 Metrics/BlockLength:
-  Max: 60
+  Max: 70
 
 Metrics/CyclomaticComplexity:
   Max: 20

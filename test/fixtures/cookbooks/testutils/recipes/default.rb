@@ -130,6 +130,29 @@ fileutils '/u12/make/sub' do
   directory_mode 0771
 end
 
+
+# Non recursive examples
+directory '/u13/make/sub/directories/last' do
+  recursive true
+  mode 0755
+end
+file '/u13/make/file' do
+  mode 0644
+end
+file '/u13/make/sub/file' do
+  mode 0644
+end
+fileutils '/u13/make/sub' do
+  recursive false
+  directory_mode 0771
+end
+fileutils '/u13/make' do
+  recursive false
+  only_files true
+  directory_mode 0770
+  file_mode 0700
+end
+
 # delete a directory tree
 directory '/ud1/make/sub/directories/last' do
   recursive true

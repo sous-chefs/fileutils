@@ -136,6 +136,42 @@ describe 'Should be able to set things separately' do
       expect(subject).to be_mode(771)
     end
   end
+
+  describe file('/u13/make/sub/directories/last') do
+    it 'non-recursive should not change depth of 2' do
+      expect(subject).to be_mode(755)
+    end
+  end
+
+  describe file('/u13/make/sub/directories') do
+    it 'non-recursive should change depth of 1' do
+      expect(subject).to be_mode(771)
+    end
+  end
+
+  describe file('/u13/make/sub') do
+    it 'non-recursive should change depth of 0' do
+      expect(subject).to be_mode(771)
+    end
+  end
+
+  describe file('/u13/make') do
+    it 'non-recursive files_only should not change depth of 0' do
+      expect(subject).to be_mode(755)
+    end
+  end
+
+  describe file('/u13/make/file') do
+    it 'non-recursive files_only should change files depth of 1' do
+      expect(subject).to be_mode(700)
+    end
+  end
+
+  describe file('/u13/make/sub/file') do
+    it 'non-recursive files_only should not change files depth of 2' do
+      expect(subject).to be_mode(644)
+    end
+  end
 end
 
 describe 'Should delete directories' do

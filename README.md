@@ -20,16 +20,16 @@ The fileutils resource will accept two actions.  :change is used to modify owner
 
 Action | Parameter | Use
 ------ | --------- | ---
-:change | path     | Specify the starting path or file.
+:change | path     | Specify the starting path or file. The path must exist for anything to be done.
         | owner    | Set the owner of the files and directories to this value.
         | group    | Set the group of the files and directories to this value.
         | file_mode | Set the permission mode for files. Specify octal numbers or mode change symbols
         | directory_mode | Set the permission mode for directories. Specify octal numbers or mode change symbols
-        | recursive | Boolean. Use subdirectory recursion. Default is true.
+        | recursive | Boolean. Use top down traversal from the starting path. Default is true. When recursive is false only the initial directory and contents are changed.
         | only_files | Boolean. Only change files. Default is false.
         | only_directories | Boolean. Only change directories. Default is false.
         | pattern | Regex. Match to filter the basename of files and directories.
-        | follow_symlink | Boolean. Continue on past symlinks.  Serious footgun capacity.
+        | follow_symlink | Boolean. Continue on past symlinks.  Serious footgun capacity. Default is false.
 
 Action | Parameter | Use
 ------ | --------- | ---
@@ -74,10 +74,12 @@ A good example of why you would use the fileutils resource would  be setting att
 dir '/export/home/my/stuff/deep' do
   recursive true  # creates parents
 end
+
 # Set the owner on multiple directories
 fileutils '/export/home/my' do # Set the child nodes
   owner 'my'
 end
+
 # Empty a directory
 fileutils '/export/home/my' do
   action :delete
@@ -87,6 +89,14 @@ end
 fileutils '/export/home/my' do # Set the child nodes
   file_mode ['o+r', 'g+w'] 
   directory_mode ['o+rx', 'g+wrx'] 
+end
+
+# Change only the top level directory and it's files
+# should not change .../stuff/**
+fileutils '/export/home/my' do
+  recursive false
+  files_only true
+  file_mode ['0700']
 end
 ````
 

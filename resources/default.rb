@@ -43,7 +43,6 @@ action :create do
 end
 
 action :delete do
-  puts "Resource #{path} only #{only_files}"
   changed = delete_files(path, pattern, follow_symlink,
                          only_files, force, Chef::Config[:why_run]
                         )

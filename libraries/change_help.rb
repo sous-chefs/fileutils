@@ -12,23 +12,22 @@ module DirChangeHelper
   require 'find'
 
   # Permissions
-  R = 0444  # Read
-  W = 0222  # Write
-  X = 0111  # Search/execute
-  SU = 04000 # Assign user
-  SG = 02000 # Assign group
-  T = 01000  # Sticky bit
+  R = 0o444  # Read
+  W = 0o222  # Write
+  X = 0o111  # Search/execute
+  SU = 0o4000 # Assign user
+  SG = 0o2000 # Assign group
+  T = 0o1000  # Sticky bit
 
   # Who
-  U = 07700  # Owning user
-  G = 07070  # Owning group
-  O = 07007  # Others
-  A = 07777  # Everyone
+  U = 0o7700  # Owning user
+  G = 0o7070  # Owning group
+  O = 0o7007  # Others
+  A = 0o7777  # Everyone
 
   def update_files(path, pattern, recursive, follow_symlink,
                    directory_mode, file_mode, group, owner,
-                   only_files, only_directories, why_run
-                  )
+                   only_files, only_directories, why_run)
     @path = path
     @pattern = pattern
     @recursive = recursive
@@ -49,9 +48,14 @@ module DirChangeHelper
 
   def find_and_update_files(path)
     if ::File.directory?(path) && @recursive
+      ::Find.find(path) { |node| update(node) }
+    # Update files and directories in the top path directory.
+    elsif ::File.directory?(path)
       ::Find.find(path) do |node|
         update(node)
+        ::Find.prune if path != node && ::File.directory?(node)
       end
+    # Process a single file
     else
       update(path)
     end
@@ -61,14 +65,13 @@ module DirChangeHelper
     raise 'Tried to update root /' if path == '/'
     return if @pattern && ::File.basename(path) !~ @pattern
     fs = ::File.lstat(path)
-    case
-    when fs.directory? && ! @only_files
+    if fs.directory? && !@only_files
       mode = new_mode(fs.mode, @directory_mode)
       file_update(path, mode) if file_check(fs, mode)
-    when fs.file? && ! @only_directories
+    elsif fs.file? && !@only_directories
       mode = new_mode(fs.mode, @file_mode)
       file_update(path, mode) if file_check(fs, mode)
-    when fs.symlink?
+    elsif fs.symlink?
       ::Find.prune unless @follow_symlink
       find_and_update_files(::File.readlink(path))
     end

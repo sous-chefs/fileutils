@@ -10,7 +10,7 @@ and the files contained inside them.
 Requirements
 ============
 
-Developed for Rhel and Solaris servers.
+Developed for RHEL and Solaris servers.
 
 
 Resource Parameters

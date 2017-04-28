@@ -3,6 +3,7 @@
 # Resource:: default
 #
 # Copyright 2017, Nordstrom, Inc.
+# Licensed under the Apache License, Version 2.0 (the "License")
 #
 
 default_action :create

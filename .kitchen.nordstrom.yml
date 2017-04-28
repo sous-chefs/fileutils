@@ -1,0 +1,29 @@
+---
+driver:
+  name: vagrant
+
+driver_config:
+  http_proxy: http://webproxysea.nordstrom.net:8181
+  https_proxy: http://webproxysea.nordstrom.net:8181
+  no_proxy: nordstrom.net,y0319p274.nordstrom.net,y0319p973.nordstrom.net,x0319p164,10.16.139.174
+  require_chef_omnibus: 12.19.36
+
+provisioner:
+  name: chef_zero
+  # gem_source: http://10.16.216.242
+
+platforms:
+  - name: base-rhel7
+    driver_config:
+      box: nordrhel7
+      box_url: http://y0319p297/imgarchive/vagrant/rhel7_virtualbox.box
+  - name: base-sol11
+    driver:
+      box: nordsol11
+      box_url: http://y0319p297/imgarchive/vagrant/sol11_virtualbox.box
+
+suites:
+  - name: default
+    run_list:
+      - recipe[testutils]
+    attributes:

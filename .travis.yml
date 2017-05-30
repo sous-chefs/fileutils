@@ -1,0 +1,17 @@
+language: ruby
+
+branches:
+  only:
+  - master
+  - UIS-3138
+
+matrix:
+  include:
+  - rvm: 2.2
+    script: rake test;
+
+notifications:
+  on_change: true
+  on_failure: true
+  on_success: change
+  on_pull_requests: false

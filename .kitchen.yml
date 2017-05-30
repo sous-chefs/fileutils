@@ -8,9 +8,8 @@
 driver:
   name: vagrant
 
-driver_config:
-  require_chef_omnibus: 12.19.36
 <% if proxy_vars.size > 0 %>
+driver_config:
 <% %w(http_proxy https_proxy no_proxy).each do |envvar| %>
 <% if ENV.key?(envvar) %>
   <%= envvar %>: '<%= ENV[envvar] %>'
@@ -23,6 +22,10 @@ provisioner:
 
 platforms:
   - name: centos-7.2
+    require_chef_omnibus: 12.19.36
+
+  - name: centos-7.3
+    require_chef_omnibus: 13.0.118
 
 suites:
   - name: default

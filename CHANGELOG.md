@@ -4,6 +4,9 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
+## 1.1.3
+* Apache license in metadata
+
 ## 1.1.2
 * Minor clean up, add author
 

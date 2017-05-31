@@ -36,13 +36,17 @@ stage('Build') {
     try {
       // if we have a Rakefile, use it
       if (fileExists('Rakefile')) {
-        sh 'chef exec rake'
+        withEnv(["HTTPS_PROXY=http://pbcld-proxy.nordstrom.net:3128", "NO_PROXY=nordstrom.net"]) {
+          sh 'chef exec rake'
+        }
       }
       else {
-        // otherwise, use a sane default
-        sh 'chef exec rubocop'
-        sh 'chef exec foodcritic .'
-        sh 'chef exec rspec'
+        withEnv(["HTTPS_PROXY=http://pbcld-proxy.nordstrom.net:3128", "NO_PROXY=nordstrom.net"]) {
+          // otherwise, use a sane default
+          sh 'chef exec rubocop'
+          sh 'chef exec foodcritic .'
+          sh 'chef exec rspec'
+        }
       }
 
       // if we get to this point with no errors, we have a successful build

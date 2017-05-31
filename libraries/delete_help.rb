@@ -3,8 +3,8 @@
 # Library:: helper
 #
 # Copyright 2017 Nordstrom, Inc.
+# Licensed under the Apache License, Version 2.0 (the "License")
 #
-# All rights reserved - Do Not Redistribute
 
 # Utility methods to change directory and file attributes
 module DirDeleteHelper

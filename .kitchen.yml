@@ -1,26 +1,31 @@
+<% proxy_vars = {} %>
+<% %w(http_proxy https_proxy no_proxy).each do |envvar| %>
+<%   if ENV.key?(envvar) %>
+<%     proxy_vars[envvar] = ENV[envvar] %>
+<%   end %>
+<% end %>
 ---
 driver:
   name: vagrant
 
+<% if proxy_vars.size > 0 %>
 driver_config:
-  http_proxy: http://webproxysea.nordstrom.net:8181
-  https_proxy: http://webproxysea.nordstrom.net:8181
-  no_proxy: nordstrom.net,y0319p274.nordstrom.net,y0319p973.nordstrom.net,x0319p164,10.16.139.174
-  require_chef_omnibus: 12.13.37
+<% %w(http_proxy https_proxy no_proxy).each do |envvar| %>
+<% if ENV.key?(envvar) %>
+  <%= envvar %>: '<%= ENV[envvar] %>'
+<% end %>
+<% end %>
+<% end %>
 
 provisioner:
   name: chef_zero
-  gem_source: http://10.16.216.242
 
 platforms:
-  - name: base-rhel7
-    driver_config:
-      box: nordrhel7
-      box_url: http://y0319p297/imgarchive/vagrant/rhel7_virtualbox.box
-  - name: base-sol11
-    driver:
-      box: nordsol11
-      box_url: http://y0319p297/imgarchive/vagrant/sol11_virtualbox.box
+  - name: centos-7.2
+    require_chef_omnibus: 12.19.36
+
+  - name: centos-7.3
+    require_chef_omnibus: 13.0.118
 
 suites:
   - name: default

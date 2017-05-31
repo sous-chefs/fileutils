@@ -2,6 +2,7 @@
 # spec:: rspec_helper
 #
 # Copyright 2017, Nordstrom Inc.
+# Licensed under the Apache License, Version 2.0 (the "License")
 #
 
 require_relative '../libraries/change_help'

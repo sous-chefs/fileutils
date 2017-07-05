@@ -4,6 +4,9 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
+## 1.1.5
+* Add Travis tests
+
 ## 1.1.4
 * Add contributers and testing files.
 * metadata changes to pass quality metrics

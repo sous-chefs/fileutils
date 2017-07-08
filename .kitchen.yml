@@ -17,6 +17,10 @@ driver_config:
 <% end %>
 <% end %>
 
+client_rb:
+  treat_deprecation_warnings_as_errors: true
+  resource_cloning: false
+
 provisioner:
   name: chef_zero
 

@@ -37,4 +37,4 @@ consistent with Nordstrom's use and design of the cookbook will be considered fo
 
 Need to report an issue?  Use the git hub issues link.
 
-* https://github.com/nordstrom/fileutils/issues
+* https://github.com/nordstrom/fileutils-cookbook/issues

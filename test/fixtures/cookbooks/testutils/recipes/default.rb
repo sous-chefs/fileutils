@@ -179,3 +179,12 @@ fileutils '/ud2/make/sub' do
   only_files true
   force true
 end
+
+# Issue 1 - minimal idempotency check
+test_dir = '/tmp/test_dir'
+directory test_dir do
+  action :create
+end
+fileutils test_dir do
+  group 'nobody'
+end

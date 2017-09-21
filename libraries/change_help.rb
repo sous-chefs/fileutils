@@ -87,11 +87,11 @@ module DirChangeHelper
   end
 
   def file_check(fs, mode)
-    change = false
-    change = true unless fs.mode == new_mode(fs.mode, mode)
-    change = true unless fs.uid == @uid
-    change = true unless fs.gid == @gid
-    change
+    changed = false
+    changed = true unless fs.mode == new_mode(fs.mode, mode)
+    changed = true unless fs.uid == @uid || @uid == -1
+    changed = true unless fs.gid == @gid || @gid == -1
+    changed
   end
 
   def new_mode(mode, settings)

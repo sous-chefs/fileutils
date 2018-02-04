@@ -25,11 +25,17 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: centos-7.2
+  - name: fileutils-7.2-chef12
     require_chef_omnibus: 12.19.36
+    driver_config:
+      box: opscode-centos-7.2
+      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box
 
-  - name: centos-7.3
-    require_chef_omnibus: 13.0.118
+  - name: fileutils-7.2-chef13
+    require_chef_omnibus: 13.6.4
+    driver_config:
+      box: opscode-centos-7.2
+      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box
 
 suites:
   - name: default

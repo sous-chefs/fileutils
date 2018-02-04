@@ -4,6 +4,9 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
+## 1.1.7
+* Change the cookbook description
+
 ## 1.1.6
 * Fix setting the gid and uid
 

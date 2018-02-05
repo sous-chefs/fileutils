@@ -1,5 +1,6 @@
 user 'u1'
 group 'g1'
+group 'nobody'
 
 # hard set mode bits
 

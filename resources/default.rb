@@ -45,6 +45,6 @@ end
 
 action :delete do
   changed = delete_files(new_resource.path, new_resource.pattern, new_resource.follow_symlink,
-                         new_resource.only_files, new_resource.force, Chef::Config[:why_run])
+                         new_resource.only_files, new_resource.force, new_resource.quiet, Chef::Config[:why_run])
   converge_by("Delete files #{new_resource.name}") {} if changed
 end

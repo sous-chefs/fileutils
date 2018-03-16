@@ -27,7 +27,7 @@ module DirChangeHelper
 
   def update_files(path, pattern, recursive, follow_symlink,
                    directory_mode, file_mode, group, owner,
-                   only_files, only_directories, why_run)
+                   quiet, only_files, only_directories, why_run)
     @path = path
     @pattern = pattern
     @recursive = recursive
@@ -36,6 +36,7 @@ module DirChangeHelper
     @file_mode = file_mode
     @group = group
     @owner = owner
+    @quiet = quiet
     @why_run = why_run
     @only_files = only_files
     @only_directories = only_directories
@@ -78,7 +79,7 @@ module DirChangeHelper
   end
 
   def file_update(path, mode)
-    Chef::Log.info("Path #{path} updated mode #{mode} owner #{@uid} group #{@gid}")
+    Chef::Log.info("Path #{path} updated mode #{mode} owner #{@uid} group #{@gid}") unless @quiet
     @changed = true
     return if @why_run
     f = ::File.new(path)

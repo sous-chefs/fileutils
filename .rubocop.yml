@@ -24,7 +24,7 @@ Metrics/ModuleLength:
   Max: 140
 
 Metrics/ParameterLists:
-  Max: 11
+  Max: 12
 
 Metrics/PerceivedComplexity:
   Max: 20

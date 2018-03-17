@@ -204,3 +204,16 @@ describe 'Should delete only files' do
     end
   end
 end
+
+describe 'Should process quietly files' do
+  describe file('/ui2/make/sub/directories') do
+    it 'should be owned by u1' do
+      expect(subject).to be_owned_by('u1')
+    end
+  end
+  describe file('/ui2/make/sub/directories/last/leaf') do
+    it 'should delete files' do
+      expect(subject).not_to exist
+    end
+  end
+end

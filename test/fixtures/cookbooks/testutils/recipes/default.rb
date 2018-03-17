@@ -189,3 +189,25 @@ end
 fileutils test_dir do
   group 'nobody'
 end
+
+# Issue 2 - Add the quiet option
+
+directory '/ui2/make/sub/directories/last' do
+  recursive true
+end
+file '/ui2/make/sub/directories/last/leaf' do
+end
+file '/ui2/make/sub/directories/last/leaf1' do
+end
+fileutils '/ui2/make/sub' do
+  group 'g1'
+  owner 'u1'
+  directory_mode 0o555
+  file_mode 0o640
+  quiet true
+end
+
+fileutils '/ui2/make/sub/directories/last' do
+  action :delete
+  quiet true
+end

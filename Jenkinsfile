@@ -16,6 +16,10 @@ chef_orgs = [] //filled in based on your jetbridge.yml's deploy: orgs list
 stage('Build') {
   // get a build node with chefdk and git
   node ('git && chefdk') {
+    // output the chefdk / ruby versions for debugging
+    sh 'chef --version'
+    sh 'chef exec ruby --version'
+
     // pull the latest version down
     checkout scm
 
@@ -34,18 +38,27 @@ stage('Build') {
     build_error = null // null is "falsey" in groovy
 
     try {
-      // if we have a Rakefile, use it
-      if (fileExists('Rakefile')) {
-        withEnv(["HTTPS_PROXY=http://pbcld-proxy.nordstrom.net:3128", "NO_PROXY=nordstrom.net"]) {
-          sh 'chef exec rake'
+      // since the build node runds in cloud v1, we need to use a proxy to access the internet
+      // but not for nordstrom.net servers and not for localhost (e.g. chefspec endpoints)
+      withEnv(["HTTPS_PROXY=http://pbcld-proxy.nordstrom.net:3128", "NO_PROXY=nordstrom.net,127.0.0.1"]) {
+
+        commandPrefix = 'chef exec '
+        // if we have a Gemfile, use it
+        if (fileExists('Gemfile')) {
+          // bundle install the gems required to a local vendor path (instead of the default system location)
+          sh 'chef exec bundle install --path vendor/bundle'
+          commandPrefix = 'chef exec bundle exec '
         }
-      }
-      else {
-        withEnv(["HTTPS_PROXY=http://pbcld-proxy.nordstrom.net:3128", "NO_PROXY=nordstrom.net"]) {
+
+        // if we have a Rakefile, use it
+        if (fileExists('Rakefile')) {
+          sh "${commandPrefix}rake"
+        }
+        else {
           // otherwise, use a sane default
-          sh 'chef exec rubocop'
-          sh 'chef exec foodcritic .'
-          sh 'chef exec rspec'
+          sh "${commandPrefix}rubocop"
+          sh "${commandPrefix}foodcritic ."
+          sh "${commandPrefix}rspec"
         }
       }
 
@@ -61,7 +74,7 @@ stage('Build') {
     step([$class: 'StashNotifier', credentialsId: 'bitbucket-build-notifier'])
 
     if (build_error) {
-      error(build_error)
+      error(build_error.toString)
     }
   }
 }

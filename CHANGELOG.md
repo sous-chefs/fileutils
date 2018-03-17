@@ -4,6 +4,9 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
+## 1.2.0
+* Add a quite option to turn off the detail output from file changes and deletes
+
 ## 1.1.7
 * Change the cookbook description
 

@@ -30,6 +30,7 @@ The fileutils resource will accept two actions.  :change is used to modify owner
 |        | only_directories | Boolean. Only change directories. Default is false.
 |        | pattern | Regex. Match to filter the basename of files and directories.
 |        | follow_symlink | Boolean. Continue on past symlinks.  Serious footgun capacity. Default is false.
+|        | quiet | Boolean. Supress output for changing each file. Default is false.
 
 | Action | Parameter | Use
 | ------ | --------- | ---
@@ -38,7 +39,8 @@ The fileutils resource will accept two actions.  :change is used to modify owner
 |         | only_files | Boolean. Only delete files. Default is false.
 |         | pattern | Regex. Match to filter the basename of files and directories.
 |         | follow_symlink | Boolean. Continue on past symlinks.  Serious footgun capacity!
-|         | force | Boolean. Use the for option with FileUtils
+|         | force | Boolean. Use the for option with FileUtils.
+|         | quiet | Boolean. Supress output for deleting each file. Default is false.
 
 Mode bit symbolic settings.
 ==========================

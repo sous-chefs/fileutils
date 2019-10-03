@@ -81,7 +81,7 @@ fileutils '/u07/make/sub' do
   group 'g1'
   owner 'u1'
   directory_mode ['g+w', 'u-r']
-  file_mode ['u-w', 'go-r']
+  file_mode %w(u-w go-r)
   only_files true
 end
 

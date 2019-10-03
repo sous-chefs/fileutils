@@ -13,10 +13,10 @@ end
 RSpec::Core::RakeTask.new
 
 desc 'Run Rubocop and Foodcritic style checks'
-task style: %i[rubocop foodcritic]
+task style: %i(rubocop foodcritic)
 
 desc 'Run all style checks and unit tests'
-task test: %i[style spec]
+task test: %i(style spec)
 
 desc 'Code coverage'
 task coverage: [:spec]

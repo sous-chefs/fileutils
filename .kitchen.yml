@@ -1,21 +1,6 @@
-<% proxy_vars = {} %>
-<% %w(http_proxy https_proxy no_proxy).each do |envvar| %>
-<%   if ENV.key?(envvar) %>
-<%     proxy_vars[envvar] = ENV[envvar] %>
-<%   end %>
-<% end %>
 ---
 driver:
   name: vagrant
-
-<% if proxy_vars.size > 0 %>
-driver_config:
-<% %w(http_proxy https_proxy no_proxy).each do |envvar| %>
-<% if ENV.key?(envvar) %>
-  <%= envvar %>: '<%= ENV[envvar] %>'
-<% end %>
-<% end %>
-<% end %>
 
 client_rb:
   treat_deprecation_warnings_as_errors: true
@@ -25,17 +10,14 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: fileutils-7.2-chef12
-    require_chef_omnibus: 12.19.36
+  - name: fileutils-centos
+    require_chef_omnibus: 14.10.9
     driver_config:
       box: opscode-centos-7.2
       box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box
 
-  - name: fileutils-7.2-chef13
-    require_chef_omnibus: 13.6.4
-    driver_config:
-      box: opscode-centos-7.2
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box
+  - name: ubuntu-16.04
+    require_chef_omnibus: 14.10.9
 
 suites:
   - name: default

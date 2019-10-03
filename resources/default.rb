@@ -2,7 +2,7 @@
 # Cookbook:: fileutils
 # Resource:: default
 #
-# Copyright 2017, Nordstrom, Inc.
+# Copyright:: 2017, Nordstrom, Inc.
 # Licensed under the Apache License, Version 2.0 (the "License")
 #
 
@@ -13,13 +13,20 @@ property :recursive, [TrueClass, FalseClass], default: true
 property :follow_symlink, [TrueClass, FalseClass], default: false
 property :directory_mode, [String, Integer, Array], callbacks: {
   'should be numeric, ogu+rwx form or array of valid values' => lambda do |p|
-    return true if p.is_a?(Integer) && p < 0o1000
+    return true if p.is_a?(Integer)
     [p].flatten.compact.all? do |mode|
-      mode =~ /\A([ugo]*[\+-][rwx]+|0[0-7]{3,4})\z/
+      mode =~ /\A([ugo]*[\+-][rwx]+)|((0|[bdox])*[\d_]+)\z/
     end
-  end
+  end,
 }
-property :file_mode, [String, Integer, Array] # (absolute value or + or -)
+property :file_mode, [String, Integer, Array], callbacks: {
+  'should be numeric, ogu+rwx form or array of valid values' => lambda do |p|
+    return true if p.is_a?(Integer)
+    [p].flatten.compact.all? do |mode|
+      mode =~ /\A([ugo]*[\+-][rwx]+)|((0|[bdox])*[\d_]+)\z/
+    end
+  end,
+}
 property :only_files, [TrueClass, FalseClass], default: false
 property :only_directories, [TrueClass, FalseClass], default: false
 property :force, [TrueClass, FalseClass], default: false

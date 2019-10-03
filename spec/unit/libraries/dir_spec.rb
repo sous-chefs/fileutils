@@ -31,19 +31,24 @@ context 'Directory utility' do
     end
   end
 
-  describe 'method new_mode' do
-    it 'should combine the existing mode and new settings' do
-      expect(new_mode(0o755, 'ugo+x')).to eq(0o755)
-      expect(new_mode(0o755, 'ogu-r')).to eq(0o311)
-      expect(new_mode(0o750, '+r')).to eq(0o754)
-      expect(new_mode(0o755, '-w')).to eq(0o555)
-      expect(new_mode(0o644, 'go+x')).to eq(0o655)
-      expect(new_mode(0o755, 'ou-r')).to eq(0o351)
+  describe 'method valid_mode' do
+    it 'should make sure the mode is in range' do
+      expect(valid_mode(0)).to be_truthy
+      expect(valid_mode(0o755)).to be_truthy
+      expect(valid_mode(0o7755)).to be_truthy
+      expect(valid_mode(0o17755)).to be_falsey
     end
   end
 
   describe 'method new_mode' do
     it 'should combine the existing mode and new settings' do
+      expect(new_mode(0o755, '644')).to eq(0o1204)
+      expect(new_mode(0o755, '0644')).to eq(0o644)
+      expect(new_mode(0o755, ['0644'])).to eq(0o644)
+      expect(new_mode(0o755, ['0644', 0600])).to eq(0o600)
+      expect(new_mode(0o755, ['0644', 0600, '+r'])).to eq(0o644)
+      expect(new_mode(0o755, %w(0600 00400 00004))).to eq(0o004)
+      expect(new_mode(0o755, 'g+w')).to eq(0o775)
       expect(new_mode(0o755, 'ugo+x')).to eq(0o755)
       expect(new_mode(0o755, 'ogu-r')).to eq(0o311)
       expect(new_mode(0o750, '+r')).to eq(0o754)
@@ -51,7 +56,7 @@ context 'Directory utility' do
       expect(new_mode(0o644, 'go+x')).to eq(0o655)
       expect(new_mode(0o755, 'uo-r')).to eq(0o351)
       expect(new_mode(0o755, 0o644)).to eq(0o644)
-      expect(new_mode(0o755, ['u-x', 'g-r', 'o-x'])).to eq(0o614)
+      expect(new_mode(0o755, %w(u-x g-r o-x))).to eq(0o614)
       expect(new_mode(0o755, ['g+w', 'uo-rx'])).to eq(0o270)
     end
   end

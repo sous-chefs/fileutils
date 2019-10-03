@@ -42,10 +42,14 @@ The fileutils resource will accept two actions.  :change is used to modify owner
 |         | force | Boolean. Use the for option with FileUtils.
 |         | quiet | Boolean. Supress output for deleting each file. Default is false.
 
-Mode bit symbolic settings.
+Mode bit settings.
 ==========================
  
-You can use symbolic settings. Pick who and add or subtract access permissions. The code tries to mimic the chmod command.
+You may specify the mode as a numeric value.
+
+* 0o600, 0600, '0600' and 420 will all create the same numeric setting. Note that '600' is treated as decimal 600 and is not the same as '0600' which is treated as octal 600.
+
+You may use symbolic settings. Pick from the who list and add or subtract access permissions. The code tries to mimic the chmod command.
 
 Who  
 ---

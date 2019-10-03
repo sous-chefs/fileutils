@@ -36,7 +36,7 @@ context 'Directory utility' do
       expect(valid_mode(0)).to be_truthy
       expect(valid_mode(0o755)).to be_truthy
       expect(valid_mode(0o7755)).to be_truthy
-      expect(valid_mode(0o17755)).to be_falsey
+      expect(valid_mode(0o1117755)).to be_falsey
     end
   end
 

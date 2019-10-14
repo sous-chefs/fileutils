@@ -6,10 +6,12 @@ driver_config:
   http_proxy: http://webproxysea.nordstrom.net:8181
   https_proxy: http://webproxysea.nordstrom.net:8181
   no_proxy: nordstrom.net,y0319p274.nordstrom.net,y0319p973.nordstrom.net,x0319p164,10.16.139.174
-  require_chef_omnibus: 12.19.36
+  require_chef_omnibus: 15
 
 provisioner:
   name: chef_zero
+  chef_license: accept
+  product_name: chef
   # gem_source: http://10.16.216.242
 
 platforms:

@@ -4,7 +4,7 @@ maintainer       'Nordstrom, Inc.'
 maintainer_email 'itunixadminall@nordstrom.com'
 license          'Apache-2.0'
 description      'Recursively modify (chown, chmod)  owner, group, mode settings or delete files and directories'
-version          '1.3.0'
+version          '1.3.1
 source_url       'https://github.com/nordstrom/fileutils-cookbook'
 issues_url       'https://github.com/nordstrom/fileutils-cookbook/issues'
 supports         'redhat'

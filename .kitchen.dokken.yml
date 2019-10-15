@@ -8,6 +8,8 @@ transport:
 
 provisioner:
   name: dokken
+  chef_license: accept
+  product_name: chef
 
 verifier:
   name: inspec

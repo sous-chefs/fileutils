@@ -4,6 +4,11 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
+## 1.3.0
+* Try to treat the mode settings for files and groups more consistently.
+* Allow numeric and string settings for mode values
+* Cookstyle updates
+
 ## 1.2.0
 * Add a quite option to turn off the detail output from file changes and deletes
 

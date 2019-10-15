@@ -22,7 +22,7 @@ directory '/u02/make/sub/directories/last' do
   recursive true
 end
 file '/u02/make/sub/directories/last/leaf' do
-  mode 0o755
+  mode '755'
 end
 fileutils '/u02/make/sub' do
   group 'g1'
@@ -75,13 +75,13 @@ directory '/u07/make/sub/directories/last' do
   recursive true
 end
 file '/u07/make/sub/directories/last/leaf' do
-  mode 0o755
+  mode '755'
 end
 fileutils '/u07/make/sub' do
   group 'g1'
   owner 'u1'
   directory_mode ['g+w', 'u-r']
-  file_mode ['u-w', 'go-r']
+  file_mode %w(u-w go-r)
   only_files true
 end
 
@@ -90,7 +90,7 @@ directory '/u08/make/sub/directories/last' do
   recursive true
 end
 file '/u08/make/sub/directories/last/leaf' do
-  mode 0o755
+  mode '755'
 end
 fileutils '/u08/make/sub' do
   group 'g1'
@@ -134,13 +134,13 @@ end
 # Non recursive examples
 directory '/u13/make/sub/directories/last' do
   recursive true
-  mode 0o755
+  mode '755'
 end
 file '/u13/make/file' do
-  mode 0o644
+  mode '644'
 end
 file '/u13/make/sub/file' do
-  mode 0o644
+  mode '644'
 end
 fileutils '/u13/make/sub' do
   recursive false

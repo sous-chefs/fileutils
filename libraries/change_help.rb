@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: fileutils
+# Cookbook:: fileutils
 # Library:: helper
 #
-# Copyright 2017 Nordstrom, Inc.
+# Copyright:: 2017 Nordstrom, Inc.
 # Licensed under the Apache License, Version 2.0 (the "License")
 #
 
@@ -106,9 +106,10 @@ module DirChangeHelper
                   when nil
                     calc_mode
                   else
-                    setting
+                    Integer(setting)
                   end
     end
+    raise ArgumentError, "The calculated mode is invalid #{calc_mode.to_s(8)} from #{settings}" unless valid_mode(calc_mode)
     calc_mode
   end
 
@@ -142,5 +143,9 @@ module DirChangeHelper
     access |= SU if setting =~ /s.*u/
     access |= SG if setting =~ /s.*g/
     access
+  end
+
+  def valid_mode(mode)
+    mode.to_s(8) =~ /\A[0-7]{1,6}\z/
   end
 end

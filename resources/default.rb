@@ -35,10 +35,6 @@ property :owner, String
 property :quiet, [TrueClass, FalseClass], default: false
 
 action_class do
-  def whyrun_supported?
-    true
-  end
-
   include DirChangeHelper
   include DirDeleteHelper
 end

@@ -20,7 +20,7 @@ You must also have Vagrant and VirtualBox installed:
 
 1. Clone the git repository from Github:
 
-   - `git clone git@github.com:nordstrom/fileutile-cookbook.git`
+   - `git clone git@github.com:sous-chefs/fileutils.git`
 
 2. Create a branch for your changes:
 
@@ -35,4 +35,4 @@ You must also have Vagrant and VirtualBox installed:
   - `rspec`
   - `kitchen test`
 
-6. Assuming the tests pass, open a pull request on github.com/nordstrom/fileutils-cookbook
+6. Assuming the tests pass, open a pull request on github.com/sous-chefs/fileutils

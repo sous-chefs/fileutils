@@ -30,11 +30,8 @@ A best effort attempt will be made to make releases to supermarket.chef.io for c
 
 ## Pull requests
 
-Fileutils is an internal Nordstrom cookbook that is made available to the community.  Pull requests that are
-consistent with Nordstrom's use and design of the cookbook will be considered for merging.
-
 ## Issues
 
 Need to report an issue?  Use the git hub issues link.
 
-* https://github.com/nordstrom/fileutils-cookbook/issues
+* https://github.com/sous-chefs/fileutils/issues'

@@ -12,13 +12,12 @@ provisioner:
   product_name: chef
   require_chef_omnibus: 15
 
-platforms:
-  - name: fileutils-centos
-    driver_config:
-      box: opscode-centos-7.2
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box
+verifier:
+  name: inspec
 
-  - name: ubuntu-16.04
+platforms:
+  - name: centos-8
+  - name: ubuntu-20.04
 
 suites:
   - name: default

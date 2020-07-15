@@ -1,37 +1,4 @@
 # Contributing
 
-Welcome. I hope you found this cookbook useful and want to contribute something to make it better. Here are
-some notes about contributions.
-
-## Code of Conduct.
-
-* Be respectful of other contributors
-* Be nice
-
-## Tests
-
-Most of the code for this cookbook involves extensive file manipulations. Unit tests in the form of rspec tests
-make sense for the logic only methods.  Serverspec integration tests were written for testing code that 
-manipulates files.
-
-Pull requests should include.
-* Reqression tests for bug fixes
-* Functional tests for new features
-
-## Branches
-
-* master branch
-
-The master branch has the current committed changes. These changes may not yet be released.
-
-## Releases
-
-A best effort attempt will be made to make releases to supermarket.chef.io for changes to the master branch.
-
-## Pull requests
-
-## Issues
-
-Need to report an issue?  Use the git hub issues link.
-
-* https://github.com/sous-chefs/fileutils/issues'
+Please refer to
+[https://github.com/chef-cookbooks/community_cookbook_documentation/blob/master/CONTRIBUTING.MD](https://github.com/chef-cookbooks/community_cookbook_documentation/blob/master/CONTRIBUTING.MD)

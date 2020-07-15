@@ -9,8 +9,8 @@
 default_action :create
 property :path, String, name_property: true
 property :pattern, Regexp
-property :recursive, [TrueClass, FalseClass], default: true
-property :follow_symlink, [TrueClass, FalseClass], default: false
+property :recursive, [true, false], default: true
+property :follow_symlink, [true, false], default: false
 property :directory_mode, [String, Integer, Array], callbacks: {
   'should be numeric, ogu+rwx form or array of valid values' => lambda do |p|
     return true if p.is_a?(Integer)
@@ -27,12 +27,12 @@ property :file_mode, [String, Integer, Array], callbacks: {
     end
   end,
 }
-property :only_files, [TrueClass, FalseClass], default: false
-property :only_directories, [TrueClass, FalseClass], default: false
-property :force, [TrueClass, FalseClass], default: false
+property :only_files, [true, false], default: false
+property :only_directories, [true, false], default: false
+property :force, [true, false], default: false
 property :group, String
 property :owner, String
-property :quiet, [TrueClass, FalseClass], default: false
+property :quiet, [true, false], default: false
 
 action_class do
   include DirChangeHelper

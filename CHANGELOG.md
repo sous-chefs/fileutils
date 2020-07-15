@@ -4,6 +4,15 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
+## Unreleased
+
+- resolved cookstyle error: resources/default.rb:12:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/default.rb:13:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/default.rb:30:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/default.rb:31:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/default.rb:32:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/default.rb:35:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+
 ## 1.3.0
 * Try to treat the mode settings for files and groups more consistently.
 * Allow numeric and string settings for mode values

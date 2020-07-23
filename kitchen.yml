@@ -10,13 +10,12 @@ provisioner:
   name: chef_zero
   chef_license: accept
   product_name: chef
-  require_chef_omnibus: 15
+  product_version: latest
 
 verifier:
   name: inspec
 
 platforms:
-  - name: centos-8
   - name: ubuntu-20.04
 
 suites:

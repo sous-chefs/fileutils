@@ -36,7 +36,7 @@ The fileutils resource will accept two actions.
 |        | pattern | Regex. Match to filter the basename of files and directories.
 |        | follow_symlink | Boolean. Continue on past symlinks.
   Serious footgun capacity. Default is false.
-|        | quiet | Boolean. Supress output for changing each file. Default is false.
+|        | quiet | Boolean. Suppress output for changing each file. Default is false.
 
 | Action | Parameter | Use
 | ------ | --------- | ---

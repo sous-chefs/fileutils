@@ -20,22 +20,16 @@ The fileutils resource will accept two actions.
 
 | Action | Parameter | Use
 | ------ | --------- | ---
-| :change | path     | Specify the starting path or file.
- The path must exist for anything to be done.
+| :change | path     | Specify the starting path or file. The path must exist for anything to be done.
 |        | owner    | Set the owner of the files and directories to this value.
 |        | group    | Set the group of the files and directories to this value.
-|        | file_mode | Set the permission mode for files. Specify octal numbers
- or mode change symbols
-|        | directory_mode | Set the permission mode for directories.
- Specify octal numbers or mode change symbols
-|        | recursive | Boolean. Use top down traversal from the starting
- path. Default is true. When recursive is false only the initial
- directory and contents are changed.
+|        | file_mode | Set the permission mode for files. Specify octal numbers or mode change symbols
+|        | directory_mode | Set the permission mode for directories. Specify octal numbers or mode change symbols
+|        | recursive | Boolean. Use top down traversal from the starting path. Default is true. When recursive is false only the initial directory and contents are changed.
 |        | only_files | Boolean. Only change files. Default is false.
 |        | only_directories | Boolean. Only change directories. Default is false.
 |        | pattern | Regex. Match to filter the basename of files and directories.
-|        | follow_symlink | Boolean. Continue on past symlinks.
-  Serious footgun capacity. Default is false.
+|        | follow_symlink | Boolean. Continue on past symlinks. Very dangerous option with a high risk of changing unintended files. Default is false!
 |        | quiet | Boolean. Suppress output for changing each file. Default is false.
 
 | Action | Parameter | Use
@@ -44,8 +38,7 @@ The fileutils resource will accept two actions.
 |         | recursive | Delete always functions in recursive mode.
 |         | only_files | Boolean. Only delete files. Default is false.
 |         | pattern | Regex. Match to filter the basename of files and directories.
-|         | follow_symlink | Boolean. Continue on past symlinks.
-  Serious footgun capacity!
+|         | follow_symlink | Boolean. Continue on past symlinks. Very dangerous option with a high risk of deleting unintended files. Default is false!
 |         | force | Boolean. Use the for option with FileUtils.
 |         | quiet | Boolean. Supress output for deleting each file. Default is false.
 

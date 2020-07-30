@@ -1,22 +1,22 @@
-Description
-===========
+# Description
 
-This cookbook provides the fileutils resource.  The resource can be used to set attributes 
-on all of the files in a directory and subdirectory. We've had years of people 
-complaining that the directory recursive mode, which is in fact a parent operation, does 
-not work on subdirectories and files.  In this cookbook recursive refers to subdirectories
-and the files contained inside them.
+This cookbook provides the fileutils resource.  The resource can be used to set attributes
+on all of the files in a directory and subdirectory. We've had years of people
+complaining that the directory recursive mode, which is in fact a parent operation,
+does not work on subdirectories and files.  In this cookbook recursive refers
+to subdirectories and the files contained inside them.
 
-Requirements
-============
+## Requirements
 
 Developed for RHEL and Solaris servers.
 
+## Resource Parameters
 
-Resource Parameters
-===================
-The fileutils resource will accept two actions.  :change is used to modify ownership and permission mode bit settings.
-:delete is used to remove files and directories. :delete always functions in a recursive mode.  
+The fileutils resource will accept two actions.
+
+* :change is used to modify ownership and permission mode bit settings.
+* :delete is used to remove files and directories.
+  :delete always functions in a recursive mode.
 
 | Action | Parameter | Use
 | ------ | --------- | ---
@@ -29,8 +29,8 @@ The fileutils resource will accept two actions.  :change is used to modify owner
 |        | only_files | Boolean. Only change files. Default is false.
 |        | only_directories | Boolean. Only change directories. Default is false.
 |        | pattern | Regex. Match to filter the basename of files and directories.
-|        | follow_symlink | Boolean. Continue on past symlinks.  Serious footgun capacity. Default is false.
-|        | quiet | Boolean. Supress output for changing each file. Default is false.
+|        | follow_symlink | Boolean. Continue on past symlinks. Very dangerous option with a high risk of changing unintended files. Default is false!
+|        | quiet | Boolean. Suppress output for changing each file. Default is false.
 
 | Action | Parameter | Use
 | ------ | --------- | ---
@@ -38,46 +38,49 @@ The fileutils resource will accept two actions.  :change is used to modify owner
 |         | recursive | Delete always functions in recursive mode.
 |         | only_files | Boolean. Only delete files. Default is false.
 |         | pattern | Regex. Match to filter the basename of files and directories.
-|         | follow_symlink | Boolean. Continue on past symlinks.  Serious footgun capacity!
+|         | follow_symlink | Boolean. Continue on past symlinks. Very dangerous option with a high risk of deleting unintended files. Default is false!
 |         | force | Boolean. Use the for option with FileUtils.
 |         | quiet | Boolean. Supress output for deleting each file. Default is false.
 
-Mode bit settings.
-==========================
- 
+## Mode bit settings
+
 You may specify the mode as a numeric value.
 
-* 0o600, 0600, '0600' and 420 will all create the same numeric setting. Note that '600' is treated as decimal 600 and is not the same as '0600' which is treated as octal 600.
+0o600, 0600, '0600' and 420 will all create the same numeric setting.
+Note that '600' is treated as decimal 600 and is not the same as '0600'
+which is treated as octal 600.
 
-You may use symbolic settings. Pick from the who list and add or subtract access permissions. The code tries to mimic the chmod command.
+You may use symbolic settings. Pick from the who list and add
+or subtract access permissions. The code tries to mimic the
+chmod command.
 
-Who  
----
+### Who
 
-*  u Owning user
-*  g Owning group
-*  o Others
-*  a Everyone
+* u Owning user
+* g Owning group
+* o Others
+* a Everyone
 
-Permissions
------------
+### Permissions
 
-*  r Read
-*  w Write
-*  x Search/execute
-*  s Assign user
-*  t Sticky bit
+* r Read
+* w Write
+* x Search/execute
+* s Assign user
+* t Sticky bit
 
-Examples.
----------
+### Examples
 
-*  '+r'  Adds read permissions to all files
-*  'g+r' Adds read permissions for the group to all files
-*  'o-w' Removes write permissions for other from all files
+* '+r'  Adds read permissions to all files
+* 'g+r' Adds read permissions for the group to all files
+* 'o-w' Removes write permissions for other from all files
 
-Usage
-=====
-A good example of why you would use the fileutils resource would  be setting attributes on files and directories after dir and file have created things. Notice that fileutils and dir treat recursive as moving in opposite directions.
+## Usage
+
+A good example of why you would use the fileutils resource would be
+setting attributes on files and directories after directory and file
+resources have created things. Notice that fileutils and directory
+ resources treat recursive as moving in opposite directions.
 
 ````
 # Create some directories
@@ -97,8 +100,8 @@ end
 
 # Set mode attributes
 fileutils '/export/home/my' do # Set the child nodes
-  file_mode ['o+r', 'g+w'] 
-  directory_mode ['o+rx', 'g+wrx'] 
+  file_mode ['o+r', 'g+w']
+  directory_mode ['o+rx', 'g+wrx']
 end
 
 # Change only the top level directory and it's files
@@ -110,13 +113,11 @@ fileutils '/export/home/my' do
 end
 ````
 
-Author
-======
+## Author
+
 * Mark Gibbons
 
+## Acknowlegments
 
-Acknowlegments
-=============
-
-*  Seth Vargo - Vender gem technique https://sethvargo.com/using-gems-with-chef/
-*  Samuel Gay - Walk gem https://github.com/samonzeweb/walk
+* Seth Vargo - [Vender gem technique](https://sethvargo.com/using-gems-with-chef/)
+* Samuel Gay - [Walk gem](https://github.com/samonzeweb/walk)

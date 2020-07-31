@@ -4,7 +4,7 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
-## Unreleased
+## 1.4.0 (2020-07-31)
 
 * Add rspec testing to the github actions
 * Add integration testing to the github actions

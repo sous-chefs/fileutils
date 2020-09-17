@@ -1,4 +1,4 @@
-require 'rspec_helper.rb'
+require 'rspec_helper'
 
 include DirChangeHelper
 include DirDeleteHelper

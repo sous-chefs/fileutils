@@ -4,6 +4,11 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
+## Unreleased
+
+- resolved cookstyle error: libraries/delete_help.rb:11:32 convention: `Style/ExpandPathArguments`
+- resolved cookstyle error: spec/unit/libraries/dir_spec.rb:1:9 convention: `Style/RedundantFileExtensionInRequire`
+
 ## 1.4.0 (2020-07-31)
 
 * Add rspec testing to the github actions

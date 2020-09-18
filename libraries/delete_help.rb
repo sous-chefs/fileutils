@@ -8,7 +8,7 @@
 
 # Utility methods to change directory and file attributes
 module DirDeleteHelper
-  $LOAD_PATH.unshift(*Dir[File.expand_path('../../files/default/vendor/gems/**/lib', __FILE__)])
+  $LOAD_PATH.unshift(*Dir[File.expand_path('../files/default/vendor/gems/**/lib', __dir__)])
   require 'walk'
 
   def delete_files(path, pattern, follow_symlink, only_files, force, quiet, why_run)

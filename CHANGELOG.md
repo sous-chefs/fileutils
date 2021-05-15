@@ -8,6 +8,8 @@ cookbook.
 
 - resolved cookstyle error: libraries/delete_help.rb:11:32 convention: `Style/ExpandPathArguments`
 - resolved cookstyle error: spec/unit/libraries/dir_spec.rb:1:9 convention: `Style/RedundantFileExtensionInRequire`
+- support Chef 17
+- minimum Chef version is 15.3
 
 ## 1.4.0 (2020-07-31)
 

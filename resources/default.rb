@@ -33,6 +33,7 @@ property :force, [true, false], default: false
 property :group, String
 property :owner, String
 property :quiet, [true, false], default: false
+unified_mode true
 
 action_class do
   include DirChangeHelper

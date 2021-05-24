@@ -4,6 +4,8 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
+## Unreleased
+
 ## 2.0.0 - *2021-05-24*
 
 - resolved cookstyle error: libraries/delete_help.rb:11:32 convention: `Style/ExpandPathArguments`

@@ -58,10 +58,9 @@ module Walk
       end
     end
 
-    return is_file, is_dir, go_down
-
+    [is_file, is_dir, go_down]
   rescue Errno::ENOENT => e
-    return nil, nil, nil
+    [nil, nil, nil]
   end
 
   private_class_method :inner_walk

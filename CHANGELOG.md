@@ -6,6 +6,8 @@ cookbook.
 
 ## Unreleased
 
+- Remove delivery folder
+
 ## 2.1.1 - *2022-01-18*
 
 ## 2.1.0 - *2021-08-16*

@@ -4,6 +4,8 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
+## Unreleased
+
 ## 2.1.2 - *2023-02-14*
 
 - Remove delivery folder

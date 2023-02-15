@@ -6,6 +6,9 @@ cookbook.
 
 ## Unreleased
 
+- Replace delivery with reusable GitHub workflows
+- Configure Renovate
+
 ## 2.1.2 - *2023-02-14*
 
 - Remove delivery folder

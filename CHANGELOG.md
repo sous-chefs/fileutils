@@ -6,7 +6,11 @@ cookbook.
 
 ## Unreleased
 
+- Standardise files with files in sous-chefs/repo-management
+
 ## 2.1.4 - *2023-02-15*
+
+- Standardise files with files in sous-chefs/repo-management
 
 ## 2.1.3 - *2023-02-15*
 

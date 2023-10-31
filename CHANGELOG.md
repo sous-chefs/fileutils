@@ -4,6 +4,8 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
+## Unreleased
+
 ## 2.1.11 - *2023-10-31*
 
 - Fix markdown errors

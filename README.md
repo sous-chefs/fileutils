@@ -82,7 +82,7 @@ setting attributes on files and directories after directory and file
 resources have created things. Notice that fileutils and directory
  resources treat recursive as moving in opposite directions.
 
-````
+```ruby
 # Create some directories
 dir '/export/home/my/stuff/deep' do
   recursive true  # creates parents
@@ -111,7 +111,7 @@ fileutils '/export/home/my' do
   files_only true
   file_mode ['0700']
 end
-````
+```
 
 ## Author
 

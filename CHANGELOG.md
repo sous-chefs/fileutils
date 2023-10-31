@@ -6,6 +6,8 @@ cookbook.
 
 ## Unreleased
 
+- Fix markdown errors
+
 ## 2.1.10 - *2023-09-28*
 
 ## 2.1.9 - *2023-09-04*

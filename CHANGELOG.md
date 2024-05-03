@@ -4,7 +4,7 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
-## Unreleased
+## 2.1.14 - *2024-05-03*
 
 ## 2.1.13 - *2023-12-27*
 

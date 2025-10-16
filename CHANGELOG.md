@@ -1,8 +1,14 @@
-
 # CHANGELOG for fileutils
 
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
+
+## [2.1.17](https://github.com/sous-chefs/fileutils/compare/2.1.16...v2.1.17) (2025-10-15)
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#45](https://github.com/sous-chefs/fileutils/issues/45)) ([f5b6ec4](https://github.com/sous-chefs/fileutils/commit/f5b6ec4890947e5c9cd92150c80e6f2f89453829))
 
 ## 2.1.12 - *2023-11-01*
 

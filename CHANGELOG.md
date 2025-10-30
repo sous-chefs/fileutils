@@ -3,6 +3,14 @@
 This file is used to list changes made in each version of the COOKBOOK_NAME
 cookbook.
 
+## [2.1.18](https://github.com/sous-chefs/fileutils/compare/v2.1.17...v2.1.18) (2025-10-30)
+
+
+### Bug Fixes
+
+* Add version to testutils metadata.rb ([#48](https://github.com/sous-chefs/fileutils/issues/48)) ([6713bfc](https://github.com/sous-chefs/fileutils/commit/6713bfc207cac84da81e800c6f915486670796ec))
+* **ci:** Update workflows to use release pipeline ([#45](https://github.com/sous-chefs/fileutils/issues/45)) ([f5b6ec4](https://github.com/sous-chefs/fileutils/commit/f5b6ec4890947e5c9cd92150c80e6f2f89453829))
+
 ## [2.1.17](https://github.com/sous-chefs/fileutils/compare/2.1.16...v2.1.17) (2025-10-15)
 
 

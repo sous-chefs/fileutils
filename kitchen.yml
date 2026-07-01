@@ -16,7 +16,7 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-20.04
+  - name: ubuntu-24.04
 
 suites:
   - name: default

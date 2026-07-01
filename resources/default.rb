@@ -7,6 +7,8 @@
 #
 
 default_action :create
+provides :fileutils
+
 property :path, String, name_property: true
 property :pattern, Regexp
 property :recursive, [true, false], default: true
